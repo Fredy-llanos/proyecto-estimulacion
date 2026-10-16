@@ -496,9 +496,9 @@ button:focus-visible {
 
 .hero-photo-main {
     width: 100%;
-    aspect-ratio: 4/4.3;
+    aspect-ratio: 4/3.4;
     object-fit: cover;
-    object-position: center 25%;
+    object-position: center center;
     border-radius: calc(var(--radius-lg) - 4px);
     transition: transform 0.6s ease;
 }
