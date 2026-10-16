@@ -7,6 +7,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initAgeExplorer();
+    initInsideGuidesTabs();
+    initImageLightboxModal();
     initFaqAccordion();
     initCountdownTimer();
     initSmartStickyBar();
@@ -214,3 +216,96 @@ function initSocialProofToasts() {
         setInterval(showToast, 26000);
     }, 8000);
 }
+
+/**
+ * 6. EXPLORADOR DE MUESTRA REAL DE LAS GUÍAS
+ * Alterna entre la ficha diaria y la estructura de organización
+ */
+function initInsideGuidesTabs() {
+    const tabButtons = document.querySelectorAll('.inside-tab-btn');
+    const panels = document.querySelectorAll('.inside-panel');
+
+    if (!tabButtons.length || !panels.length) return;
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const target = button.getAttribute('data-tab');
+
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+            panels.forEach(p => p.classList.remove('active'));
+
+            button.classList.add('active');
+            button.setAttribute('aria-selected', 'true');
+
+            const targetPanel = document.getElementById(`panel-${target}`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        });
+    });
+}
+
+/**
+ * 7. LIGHTBOX MODAL PARA IMÁGENES DE MUESTRA
+ * Permite a los usuarios ampliar y leer las fichas en alta definición
+ */
+function initImageLightboxModal() {
+    const modal = document.getElementById('image-lightbox-modal');
+    if (!modal) return;
+
+    const modalImg = modal.querySelector('.lightbox-img');
+    const modalCaption = modal.querySelector('.lightbox-caption');
+    const closeBtn = modal.querySelector('.lightbox-close-btn');
+
+    function openModal(src, caption) {
+        if (modalImg) modalImg.src = src;
+        if (modalCaption) modalCaption.textContent = caption || '';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Triggers en botones de zoom
+    document.querySelectorAll('.btn-zoom-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const src = btn.getAttribute('data-zoom');
+            const caption = btn.getAttribute('data-caption');
+            openModal(src, caption);
+        });
+    });
+
+    // Clic directo sobre las imágenes de las guías
+    document.querySelectorAll('.inside-guide-img').forEach(img => {
+        img.addEventListener('click', () => {
+            const parent = img.closest('.inside-image-preview');
+            const trigger = parent ? parent.querySelector('.btn-zoom-trigger') : null;
+            const caption = trigger ? trigger.getAttribute('data-caption') : img.alt;
+            openModal(img.src, caption);
+        });
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('lightbox-content')) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
