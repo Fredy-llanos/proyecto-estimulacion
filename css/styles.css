@@ -1065,48 +1065,322 @@ button:focus-visible {
     font-size: 1.25rem;
 }
 
-.bonuses-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
+.offer-includes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0 32px;
     text-align: left;
 }
 
-.bonus-box {
+.offer-include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
     background: #FFFBF9;
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    color: var(--text-main);
+}
+
+.offer-include-item.highlight {
+    background: #FFF5F1;
+    border-color: #F8C3B8;
+}
+
+.offer-include-check {
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--secondary);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.free-text {
+    color: #D63945;
+    font-weight: 800;
+}
+
+/* ==========================================================================
+   SECCIÓN DE BONOS PREMIUM DE REGALO (ESTILO SHOWCASE CON 3D MOCKUPS)
+   ========================================================================== */
+.section-bonuses {
+    background: radial-gradient(circle at 50% 15%, #FFF1EB 0%, var(--bg-page) 75%);
+    position: relative;
+    overflow: hidden;
+    padding: clamp(65px, 9vw, 100px) 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.bonuses-total-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FFE5A3 0%, #FFD066 100%);
+    color: #7A4500;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    padding: 8px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
+    box-shadow: 0 4px 14px rgba(255, 179, 0, 0.28);
+    margin-bottom: 14px;
+    letter-spacing: 0.03em;
+}
+
+.bonuses-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+    margin-top: 30px;
+}
+
+.bonus-card-showcase {
+    background: #FFFFFF;
+    border: 3.5px solid #FFAAA6;
+    border-radius: 36px;
+    padding: 38px 30px 32px;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(232, 94, 101, 0.12), 0 4px 12px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform var(--transition-bounce), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.bonus-card-showcase:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px rgba(232, 94, 101, 0.22);
+    border-color: #FF7880;
+}
+
+/* Decoraciones de esquina: lazo dorado y arcoíris */
+.bonus-corner-bow {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    font-size: 2.3rem;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.bonus-corner-rainbow {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 2.3rem;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    pointer-events: none;
+}
+
+.bonus-floating-star {
+    position: absolute;
+    font-size: 1.15rem;
+    color: #FFB800;
+    animation: floatingEffect 3.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.bonus-floating-star.star-1 {
+    top: 35%;
+    left: 14px;
+}
+
+.bonus-floating-star.star-2 {
+    bottom: 25%;
+    right: 14px;
+    animation-delay: -1.5s;
+}
+
+/* Contenedor del Mockup 3D */
+.bonus-mockup-wrap {
+    width: 100%;
+    max-width: 320px;
+    margin: 12px auto 24px;
     position: relative;
 }
 
-.bonus-badge-free {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    background: #EAF8F4;
-    color: var(--secondary);
-    font-weight: 800;
-    font-size: 0.68rem;
-    padding: 3px 8px;
+.bonus-mockup-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(74, 52, 45, 0.12);
+    transition: transform 0.4s ease;
+}
+
+.bonus-card-showcase:hover .bonus-mockup-img {
+    transform: scale(1.03);
+}
+
+/* Badge con costura punteada estilo Pack Bono */
+.bonus-stitch-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #FF6670 0%, #FF858E 100%);
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 1.18rem;
+    letter-spacing: 0.04em;
+    padding: 10px 30px;
     border-radius: var(--radius-pill);
-    text-transform: uppercase;
+    border: 2.5px dashed rgba(255, 255, 255, 0.95);
+    box-shadow: 0 6px 20px rgba(232, 94, 101, 0.35);
+    margin-bottom: 16px;
+    position: relative;
 }
 
-.bonus-box strong {
-    display: block;
+.bonus-stitch-pill::before,
+.bonus-stitch-pill::after {
+    content: '✦';
+    font-size: 0.85rem;
+    color: #FFE6E8;
+}
+
+.bonus-showcase-title {
+    font-family: 'Poppins', sans-serif;
+    color: #E65A40;
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.bonus-showcase-title span.arrow {
+    color: #E65A40;
     font-size: 0.95rem;
-    color: var(--text-main);
-    margin-bottom: 4px;
-    padding-right: 50px;
 }
 
-.bonus-box p {
+/* Cajita de píldoras con edades o temas */
+.bonus-tags-container {
+    background: #FFF0E8;
+    border-radius: 20px;
+    padding: 9px 22px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.bonus-tag-item {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bonus-tag-item:nth-child(1) { color: #15836C; }
+.bonus-tag-item:nth-child(2) { color: #6652A8; }
+.bonus-tag-item:nth-child(3) { color: #D4545F; }
+
+.bonus-tag-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+}
+
+/* Descripción del bono */
+.bonus-showcase-desc {
+    font-size: 0.95rem;
+    color: #495568;
+    line-height: 1.55;
+    margin-bottom: 22px;
+    max-width: 440px;
+}
+
+/* Píldora de valoración dorada */
+.bonus-valuation-card {
+    width: 100%;
+    max-width: 420px;
+    background: linear-gradient(135deg, #FFF6DC 0%, #FFE9AC 100%);
+    border: 1.5px solid #F5C664;
+    border-radius: 20px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 14px rgba(245, 198, 100, 0.25);
+    margin-top: auto;
+}
+
+.bonus-valuation-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.bonus-valuation-info {
+    text-align: left;
+}
+
+.bonus-valuation-value {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 0.98rem;
+    color: #423214;
+    line-height: 1.2;
+}
+
+.bonus-valuation-free {
     font-size: 0.82rem;
-    color: var(--text-muted);
-    margin: 0;
-    line-height: 1.45;
+    font-weight: 800;
+    color: #D63945;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Banner de sumatoria total de bonos */
+.bonuses-total-banner {
+    background: linear-gradient(135deg, #FFF3EE 0%, #FFE8DE 100%);
+    border: 2.5px dashed #FF9E93;
+    border-radius: var(--radius-xl);
+    padding: 36px 28px;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: var(--shadow-md);
+}
+
+.bonuses-total-banner h3 {
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    color: #B5323C;
+    margin-bottom: 10px;
+}
+
+.bonuses-total-banner p {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: #424F60;
+    max-width: 680px;
+    margin: 0 auto 24px;
+}
+
+.bonuses-total-banner .btn-cta {
+    font-size: 1.08rem;
+    padding: 18px 36px;
 }
 
 .guarantee-box {
@@ -1411,8 +1685,9 @@ button:focus-visible {
         border-right: none;
     }
 
-    .bonuses-grid {
+    .bonuses-showcase-grid {
         grid-template-columns: 1fr;
+        gap: 32px;
     }
 }
 
@@ -1424,8 +1699,38 @@ button:focus-visible {
     .cards-grid,
     .testimonials-grid,
     .steps-grid,
-    .stats-strip {
+    .stats-strip,
+    .bonuses-showcase-grid {
         grid-template-columns: 1fr;
+    }
+
+    .bonus-card-showcase {
+        padding: 28px 18px 24px;
+        border-radius: 28px;
+        border-width: 2.5px;
+    }
+
+    .bonus-corner-bow,
+    .bonus-corner-rainbow {
+        font-size: 1.8rem;
+    }
+
+    .bonus-stitch-pill {
+        font-size: 1.02rem;
+        padding: 8px 20px;
+    }
+
+    .bonus-showcase-title {
+        font-size: 1.15rem;
+    }
+
+    .bonus-tags-container {
+        padding: 7px 14px;
+        gap: 8px;
+    }
+
+    .bonus-valuation-card {
+        padding: 10px 14px;
     }
 
     .stat-item {
