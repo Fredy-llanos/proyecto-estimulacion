@@ -496,9 +496,9 @@ button:focus-visible {
 
 .hero-photo-main {
     width: 100%;
-    aspect-ratio: 4/3.4;
+    aspect-ratio: 1448 / 1086;
     object-fit: cover;
-    object-position: center center;
+    object-position: center top;
     border-radius: calc(var(--radius-lg) - 4px);
     transition: transform 0.6s ease;
 }
@@ -507,45 +507,51 @@ button:focus-visible {
     transform: scale(1.02);
 }
 
-.floating-badge {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
+/* Tarjetas informativas limpias debajo de la foto del Hero (sin tapar la imagen) */
+.hero-photo-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.photo-feature-pill {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    padding: 14px 18px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    z-index: 3;
-    animation: floatingEffect 4s ease-in-out infinite;
-}
-
-.floating-badge.badge-bottom {
-    bottom: -15px;
-    left: -20px;
-    max-width: 270px;
-}
-
-.floating-badge.badge-top {
-    top: 25px;
-    right: -20px;
-    animation-delay: -2s;
+    padding: 12px 14px;
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     gap: 10px;
+    text-align: left;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.floating-badge h5 {
-    font-size: 0.88rem;
-    font-weight: 800;
+.photo-feature-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-pill-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.feature-pill-text strong {
+    display: block;
+    font-size: 0.84rem;
     color: var(--text-main);
+    line-height: 1.25;
     margin-bottom: 2px;
 }
 
-.floating-badge p {
-    font-size: 0.78rem;
+.feature-pill-text span {
+    font-size: 0.74rem;
     color: var(--text-muted);
-    margin: 0;
-    line-height: 1.4;
+    display: block;
+    line-height: 1.35;
 }
 
 @keyframes floatingEffect {
@@ -1743,14 +1749,9 @@ button:focus-visible {
         border-bottom: none;
     }
 
-    .floating-badge.badge-bottom {
-        left: 10px;
-        bottom: -10px;
-    }
-
-    .floating-badge.badge-top {
-        right: 10px;
-        top: 10px;
+    .hero-photo-features {
+        grid-template-columns: 1fr;
+        gap: 8px;
     }
 
     .mobile-sticky-bar {
