@@ -1360,6 +1360,190 @@ button:focus-visible {
     letter-spacing: 0.02em;
 }
 
+/* Lista de características con iconos circulares (como en el pack real) */
+.bonus-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin: 14px 0 22px;
+    text-align: left;
+}
+
+.bonus-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #FFF9F7;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    transition: transform var(--transition-fast);
+}
+
+.bonus-feature-item:hover {
+    transform: translateX(4px);
+    background: #FFF4F0;
+}
+
+.bonus-feature-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FFE8E5;
+    display: grid;
+    place-items: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.bonus-feature-item:nth-child(2) .bonus-feature-circle { background: #E8F4FD; }
+.bonus-feature-item:nth-child(3) .bonus-feature-circle { background: #F5E8FD; }
+.bonus-feature-item:nth-child(4) .bonus-feature-circle { background: #E8FDF5; }
+
+.bonus-feature-body strong {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.94rem;
+    color: #C93946;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.bonus-feature-body p {
+    font-size: 0.85rem;
+    color: #5A6678;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Burbujas de chat para el Bono de WhatsApp */
+.whatsapp-bubbles-container {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    margin: 14px 0 18px;
+}
+
+.whatsapp-bubble {
+    background: #EBF7F2;
+    border: 1px solid #B8E6D3;
+    border-radius: 18px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: #146B4E;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.vip-badge-pill {
+    background: linear-gradient(135deg, #2E2E2E 0%, #151515 100%);
+    color: #FFD700;
+    border: 1.5px solid #FFD700;
+    border-radius: var(--radius-pill);
+    padding: 6px 18px;
+    font-weight: 900;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   TARJETA DE BONO ESPECIAL (ALIMENTACIÓN COMPLEMENTARIA BLW)
+   ========================================================================== */
+.bonus-special-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #FFFDFB 0%, #FFF5ED 100%);
+    border: 3.5px dashed #FF7854;
+    border-radius: 36px;
+    padding: clamp(32px, 5vw, 48px);
+    box-shadow: 0 16px 45px rgba(255, 120, 84, 0.18);
+    position: relative;
+    margin-top: 24px;
+}
+
+.special-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFE6DF;
+    color: #D3432A;
+    font-weight: 900;
+    font-size: 0.88rem;
+    padding: 8px 22px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid #FFAAA0;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bonus-special-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.special-left-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.special-right-panel {
+    text-align: left;
+}
+
+.special-right-panel h4 {
+    font-size: 1.35rem;
+    color: #293446;
+    margin-bottom: 12px;
+}
+
+.special-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 18px 0 24px;
+}
+
+.special-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #3B485A;
+}
+
+.special-timer-box {
+    background: #FFFFFF;
+    border: 1.5px solid #FFBEB5;
+    border-radius: var(--radius-md);
+    padding: 14px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    margin-top: 10px;
+}
+
+.special-timer-digits {
+    font-family: 'Poppins', monospace;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: #D63945;
+    letter-spacing: 2px;
+}
+
 /* Banner de sumatoria total de bonos */
 .bonuses-total-banner {
     background: linear-gradient(135deg, #FFF3EE 0%, #FFE8DE 100%);
@@ -1691,7 +1875,8 @@ button:focus-visible {
         border-right: none;
     }
 
-    .bonuses-showcase-grid {
+    .bonuses-showcase-grid,
+    .bonus-special-grid {
         grid-template-columns: 1fr;
         gap: 32px;
     }
@@ -1706,8 +1891,14 @@ button:focus-visible {
     .testimonials-grid,
     .steps-grid,
     .stats-strip,
-    .bonuses-showcase-grid {
+    .bonuses-showcase-grid,
+    .bonus-special-grid {
         grid-template-columns: 1fr;
+    }
+
+    .whatsapp-bubbles-container {
+        flex-direction: column;
+        gap: 8px;
     }
 
     .bonus-card-showcase {

@@ -89,7 +89,8 @@ function initFaqAccordion() {
  */
 function initCountdownTimer() {
     const timerElement = document.getElementById('offer-countdown');
-    if (!timerElement) return;
+    const specialTimer = document.getElementById('special-bonus-timer');
+    if (!timerElement && !specialTimer) return;
 
     const STORAGE_KEY = 'bebes_brillantes_timer_deadline';
     let deadline = localStorage.getItem(STORAGE_KEY);
@@ -112,8 +113,10 @@ function initCountdownTimer() {
 
         const formattedMin = String(minutes).padStart(2, '0');
         const formattedSec = String(seconds).padStart(2, '0');
+        const formattedText = `${formattedMin}:${formattedSec}`;
 
-        timerElement.textContent = `${formattedMin}:${formattedSec}`;
+        if (timerElement) timerElement.textContent = formattedText;
+        if (specialTimer) specialTimer.textContent = formattedText;
 
         if (remaining <= 0) {
             // Reiniciar con una pequeña prórroga sutil
