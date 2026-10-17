@@ -2375,35 +2375,152 @@ button:focus-visible {
     }
 }
 
-/* BOTÓN FLOTANTE WHATSAPP CON EFECTO ATRAYENTE */
-.whatsapp-float {
-    position: fixed;
-    bottom: 28px;
-    right: 24px;
-    z-index: 90;
-    display: inline-flex;
+/* ==========================================================================
+   BOTONES SOCIALES EN EL FOOTER (OPCIÓN 2)
+   ========================================================================== */
+.footer-social-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 14px 0 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 16px;
+}
+
+.footer-social-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #C2D2CF;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.footer-social-buttons {
+    display: flex;
     align-items: center;
     gap: 10px;
-    padding: 13px 20px;
+    flex-wrap: wrap;
+}
+
+.footer-social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+}
+
+.footer-social-btn:hover {
+    transform: translateY(-2px);
+    color: #FFFFFF;
+    filter: brightness(1.1);
+}
+
+.footer-social-btn.whatsapp {
     background: #1DA95A;
+    box-shadow: 0 4px 14px rgba(29, 169, 90, 0.3);
+}
+
+.footer-social-btn.instagram {
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+    box-shadow: 0 4px 14px rgba(221, 42, 123, 0.3);
+}
+
+.footer-social-btn.facebook {
+    background: #1877F2;
+    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.3);
+}
+
+.footer-social-btn .social-icon-svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
+}
+
+/* ==========================================================================
+   DOCK FLOTANTE SOCIAL (WHATSAPP, INSTAGRAM, FACEBOOK - OPCIÓN 1)
+   ========================================================================== */
+.floating-social-dock {
+    position: fixed;
+    bottom: 26px;
+    right: 22px;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.social-float-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 18px;
     color: #FFFFFF;
     border-radius: var(--radius-pill);
     font-weight: 800;
-    font-size: 0.9rem;
-    box-shadow: 0 10px 25px rgba(29, 169, 90, 0.35);
+    font-size: 0.86rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
     transition: transform var(--transition-bounce), box-shadow var(--transition-fast);
+    text-decoration: none;
+    position: relative;
+    user-select: none;
 }
 
-.whatsapp-float:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 16px 32px rgba(29, 169, 90, 0.45);
+.social-float-pill:hover {
+    transform: translateY(-3px) scale(1.04);
     color: #FFFFFF;
 }
 
-.whatsapp-icon-svg {
+/* Variantes oficiales de color */
+.social-float-pill.whatsapp {
+    background: #1DA95A;
+    box-shadow: 0 10px 25px rgba(29, 169, 90, 0.38);
+    padding: 13px 20px;
+    font-size: 0.9rem;
+}
+
+.social-float-pill.whatsapp:hover {
+    box-shadow: 0 16px 32px rgba(29, 169, 90, 0.48);
+}
+
+.social-float-pill.instagram {
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+    box-shadow: 0 8px 22px rgba(221, 42, 123, 0.35);
+}
+
+.social-float-pill.instagram:hover {
+    box-shadow: 0 14px 28px rgba(221, 42, 123, 0.48);
+}
+
+.social-float-pill.facebook {
+    background: #1877F2;
+    box-shadow: 0 8px 22px rgba(24, 119, 242, 0.35);
+}
+
+.social-float-pill.facebook:hover {
+    box-shadow: 0 14px 28px rgba(24, 119, 242, 0.48);
+}
+
+.social-icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.social-float-pill.whatsapp .social-icon-svg {
     width: 22px;
     height: 22px;
-    fill: currentColor;
 }
 
 .whatsapp-dot-pulse {
@@ -2603,11 +2720,26 @@ button:focus-visible {
         font-size: 0.95rem;
     }
 
-    .whatsapp-float {
-        bottom: 85px;
-        right: 16px;
-        padding: 10px 16px;
+    .floating-social-dock {
+        bottom: 82px;
+        right: 14px;
+        gap: 7px;
+    }
+
+    .social-float-pill {
+        padding: 8px 14px;
+        font-size: 0.78rem;
+    }
+
+    .social-float-pill.whatsapp {
+        padding: 9px 15px;
         font-size: 0.82rem;
+    }
+
+    .footer-social-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .social-toast {
@@ -2616,6 +2748,22 @@ button:focus-visible {
 
     .site-footer {
         padding-bottom: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-float-pill.instagram .social-pill-label,
+    .social-float-pill.facebook .social-pill-label {
+        display: none;
+    }
+
+    .social-float-pill.instagram,
+    .social-float-pill.facebook {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
     }
 }
 
